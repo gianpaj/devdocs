@@ -2,7 +2,7 @@ module Docs
   class ReactNative < UrlScraper
     self.slug = 'react_native'
     self.type = 'react_native'
-    self.release = '0.49'
+    self.release = '0.52'
     self.base_url = 'https://facebook.github.io/react-native/docs/'
     self.root_path = 'getting-started.html'
     self.links = {
@@ -10,15 +10,16 @@ module Docs
       code: 'https://github.com/facebook/react-native'
     }
 
-    html_filters.push 'react_native/entries', 'react_native/clean_html'
+    # html_filters.push 'react_native/entries', 'react_native/clean_html'
 
-    options[:container] = '.documentationContent'
-    options[:skip_patterns] = [/\Asample\-/]
+    options[:container] = '.navGroups'
+    # options[:skip_patterns] = [/\Asample\-/]
+    options[:only_patterns] = [/\Avibrationios/]
     options[:skip] = %w(
-      videos.html
       transforms.html
       troubleshooting.html
       more-resources.html
+      contributing.html
     )
 
     options[:fix_urls] = ->(url) {
